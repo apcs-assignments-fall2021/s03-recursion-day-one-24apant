@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 public class MyMain {
     // This is the example problem that we did in class
     // This uses recursion to calculate the factorial method
@@ -10,8 +12,7 @@ public class MyMain {
         // Recursive call
         else {
             int subproblem = factorial(x-1);
-            int answer = x * subproblem;
-            return answer;
+            return x * subproblem;
         }
     }
 
@@ -24,7 +25,11 @@ public class MyMain {
     // arithmeticSequence(1) => 3
     public static int arithmeticSequence(int n) {
         // YOUR CODE HERE
-        return -1;
+        if(n == 0){
+            return 1;
+        }
+        int subProblem = arithmeticSequence(n - 1);
+        return subProblem + 2;
     }
 
     // Write a method that uses recursion to count the number
@@ -39,7 +44,15 @@ public class MyMain {
     // Hint 2: multiple recursive cases might be helpful!
     public static int countX(String str) {
         // YOUR CODE HERE
-        return -1;
+        if(Objects.equals(str, "")){
+            return 0;
+        }
+        int subProblem = 0;
+        subProblem += countX(str.substring(1));
+        if(str.charAt(0) == 'x'){
+            subProblem ++;
+        }
+        return subProblem;
     }
 
 
@@ -53,9 +66,16 @@ public class MyMain {
     // exponent(2, 5) = 2 * 2 * 2 * 2 * 2 = 32
     // exponent(5, 2) = 5 * 5 = 25
     // exponent(4, 0) = 1
-    public static int exponent(int base, int power) {
+    public static int exponent(int Base, int power) {
         // YOUR CODE HERE
-        return -1;
+        if (power == 0){
+            return 1;
+        }
+        else{
+            int total = exponent(Base, power - 1);
+            return total * Base;
+        }
+
     }
 
     // Write a method that uses recursion to count the number
@@ -65,7 +85,16 @@ public class MyMain {
     // countHi("hellohihi") => 2
     public static int countHi(String str) {
         // YOUR CODE HERE
-        return -1;
+        if(str.length() < 2){
+            return 0;
+        }
+        else{
+            int subProblem = countHi(str.substring(1));
+            if(str.startsWith("hi")){
+                subProblem ++;
+            }
+            return subProblem;
+        }
     }
 
 
